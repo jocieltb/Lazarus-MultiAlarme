@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 791
+  Left = 481
   Height = 518
-  Top = 163
+  Top = 160
   Width = 318
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -11,7 +11,7 @@ object Form1: TForm1
   Color = clBackground
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.8.4.0'
+  LCLVersion = '2.0.2.0'
   object Image1: TImage
     Left = 0
     Height = 518
@@ -285,7 +285,7 @@ object Form1: TForm1
     }
   end
   object Novo: TButton
-    Left = 162
+    Left = 180
     Height = 21
     Top = 147
     Width = 64
@@ -293,11 +293,11 @@ object Form1: TForm1
     OnClick = NovoClick
     TabOrder = 0
   end
-  object Edit1: TEdit
+  object ETarefa: TEdit
     Left = 17
     Height = 23
     Top = 122
-    Width = 208
+    Width = 192
     MaxLength = 20
     TabOrder = 1
   end
@@ -388,21 +388,21 @@ object Form1: TForm1
     Visible = False
   end
   object Label4: TLabel
-    Left = 229
+    Left = 216
     Height = 15
     Top = 106
-    Width = 39
-    Caption = 'Tempo'
+    Width = 32
+    Caption = 'Horas'
     Font.Color = clSkyBlue
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object Atualizar: TButton
-    Left = 228
+    Left = 248
     Height = 21
     Top = 147
-    Width = 75
+    Width = 61
     Caption = 'Atualizar'
     Enabled = False
     OnClick = AtualizarClick
@@ -430,7 +430,7 @@ object Form1: TForm1
     Left = 167
     Height = 15
     Top = 496
-    Width = 136
+    Width = 135
     Caption = 'Número de Tarefas: 0 / 20'
     Font.Color = clSkyBlue
     ParentColor = False
@@ -483,17 +483,29 @@ object Form1: TForm1
       ParentFont = False
     end
   end
-  object TimeEdit1: TTimeEdit
-    Left = 231
+  object SpinHora: TSpinEdit
+    Left = 216
     Height = 23
     Top = 122
-    Width = 71
-    ButtonWidth = 23
-    NumGlyphs = 1
-    MaxLength = 0
-    SimpleLayout = False
+    Width = 44
     TabOrder = 10
-    Text = '00:01'
+  end
+  object SpinMin: TSpinEdit
+    Left = 265
+    Height = 23
+    Top = 122
+    Width = 44
+    TabOrder = 11
+  end
+  object Label6: TLabel
+    Left = 265
+    Height = 15
+    Top = 106
+    Width = 24
+    Caption = 'Min.'
+    Font.Color = 16777088
+    ParentColor = False
+    ParentFont = False
   end
   object Timer1: TTimer
     Enabled = False

@@ -18,11 +18,12 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     Novo: TButton;
     Atualizar: TButton;
     CBox1: TComboBox;
     CBox2: TComboBox;
-    Edit1: TEdit;
+    ETarefa: TEdit;
     Label1: TLabel;
     LTarefa: TLabel;
     LTime: TLabel;
@@ -33,7 +34,8 @@ type
     Progress: TProgressBar;
     Progress2: TProgressBar;
     ProgressBar1: TProgressBar;
-    TimeEdit1: TTimeEdit;
+    SpinHora: TSpinEdit;
+    SpinMin: TSpinEdit;
     Timer1: TTimer;
     TrayIcon1: TTrayIcon;
     procedure NovoClick(Sender: TObject);
@@ -72,7 +74,7 @@ end;
 procedure TForm1.NovoClick(Sender: TObject);
 begin
    inicio:= time;
-   CBox1.Items.Add(TimeEdit1.Text+':01');
+   CBox1.Items.Add(SpinHora.Text+':'+SpinMin.Text+':01');
    CBox2.Items.Add(timetostr(inicio));
    LBox2.Items.Add(timetostr(time - inicio));
    Timer1.Enabled:=true;
@@ -83,16 +85,15 @@ begin
    Panel1.Visible:=false;
    Atualizar.Enabled:=true;
 
-   if Edit1.Text = '' then
+   if ETarefa.Text = '' then
    begin
       LBox1.Items.Add('Tarefa '+inttostr(LBox1.Items.Count+1));
-
    end
    else
    begin
-      LBox1.Items.Add(Edit1.Text);
+      LBox1.Items.Add(ETarefa.Text);
    end;
-   Edit1.Text:='';
+   ETarefa.Text:='';
    if LBox2.Items.Count = 20 then
    begin
       Novo.Enabled:= False;
@@ -103,11 +104,10 @@ end;
 procedure TForm1.AtualizarClick(Sender: TObject);
 begin
    inicio:= time;
-   Cbox1.Items.Strings[Lbox1.ItemIndex]:=TimeEdit1.Text+':01';
+   Cbox1.Items.Strings[Lbox1.ItemIndex]:=SpinHora.Text+':'+SpinMin.Text+':01';
    Cbox2.Items.Strings[Lbox1.ItemIndex]:=timetostr(inicio);
    PMax[Lbox1.ItemIndex]:= TimeToSegundos(strtotime(CBox1.Items.Strings[LBox1.ItemIndex]));
    Progress.Max:=PMax[Lbox1.ItemIndex];
-   LBox1.Items.Strings[LBox1.ItemIndex]:= Edit1.Text;
    LTarefa.Left:= (Form1.Width - LTarefa.Width) div 2;
    Panel1.Visible:=false;
 end;
@@ -124,8 +124,8 @@ begin
    Label1.Font.Color:= rgb(110, 217, 239);
    Label2.Font.Color:= rgb(110, 217, 239);
    Label4.Font.Color:= rgb(110, 217, 239);
-   LBox1.Font.Color:=rgb(110, 217, 239);
-   LBox2.Font.Color:=rgb(110, 217, 239);
+   LBox1.Font.Color:= rgb(110, 217, 239);
+   LBox2.Font.Color:= rgb(110, 217, 239);
 
 end;
 
@@ -155,7 +155,7 @@ begin
             Label3.Left:= (panel1.Width - Label3.Width) div 2;
             Panel1.Visible:= true;
             If Not Application.Active then
-            FlashWindow(WidgetSet.AppHandle, True);
+               FlashWindow(WidgetSet.AppHandle, True);
          end;
       end;
   end;
@@ -171,10 +171,9 @@ begin
   LTarefa.Caption:= Lbox1.Items.Strings[Lbox1.ItemIndex];
   Atualizar.Enabled:=true;
   Progress.Max:=PMax[Lbox1.ItemIndex];
-  Edit1.Text:= LBox1.Items.Strings[LBox1.ItemIndex];
+  ETarefa.Text:= LBox1.Items.Strings[LBox1.ItemIndex];
   LTarefa.Left:= (Form1.Width - LTarefa.Width) div 2;
   Panel1.Visible:=false;
-
 end;
 
 end.
